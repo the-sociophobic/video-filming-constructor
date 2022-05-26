@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/video-filming-constructor/static/css/main.98f0afee.css",
+    "main.js": "/video-filming-constructor/static/js/main.793a48ec.js",
+    "static/media/TTFirsNeue-Bold.ttf": "/video-filming-constructor/static/media/TTFirsNeue-Bold.0e5c24bc12f0df7821a9.ttf",
+    "static/media/TTFirsNeue-Regular.ttf": "/video-filming-constructor/static/media/TTFirsNeue-Regular.7925664aab1bc42bbc9b.ttf",
+    "index.html": "/video-filming-constructor/index.html",
+    "main.98f0afee.css.map": "/video-filming-constructor/static/css/main.98f0afee.css.map",
+    "main.793a48ec.js.map": "/video-filming-constructor/static/js/main.793a48ec.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.98f0afee.css",
+    "static/js/main.793a48ec.js"
+  ]
+}
