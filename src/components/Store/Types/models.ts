@@ -5,6 +5,7 @@ export interface Site extends ContentfulItem {
   title: string
   desc: string
   priceTitle: string
+  firstQuestion: Question
 }
 
 export interface Question extends ContentfulItem {
