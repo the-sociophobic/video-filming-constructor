@@ -3,34 +3,34 @@ import React from 'react'
 import { Context } from './Store'
 
 
-class Loader extends React.Component {
+const Loader: React.FC = () => {
+  const context = React.useContext(Context)
+  const [transparent, setTransparent] = React.useState(false)
+  const [hidden, setHidden] = React.useState(false)
+  const [mounted, setMounted] = React.useState(false)
 
-  static contextType = Context
-  declare context: React.ContextType<typeof Context>
+  React.useEffect(() => {
+    if (!mounted) {
+      context?.registerInitializeCallback?.(() => hide())
+      setMounted(true)
+    }
+  })
+    
 
-  state = {
-    transparent: false,
-    hidden: false
-  }  
-
-  componentDidMount = () =>
-    this?.context?.registerInitializeCallback?.(() => this.hide())
-
-  hide = () => {
-    this.setState({ transparent: true })
+  const hide = () => {
+    setTransparent(true)
     setTimeout(
-      () => this.setState({ hidden: true })
+      () => setHidden(true)
       , 900)
   }
 
-  render = () =>
+  return (
     <div className={`
       Loader
-      ${this.state.transparent && 'Loader--transparent'}
-      ${this.state.hidden && 'd-none'}
-    `}>
-
-    </div>
+      ${transparent && 'Loader--transparent'}
+      ${hidden && 'd-none'}
+    `} />
+  )
 }
 
 

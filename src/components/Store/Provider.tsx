@@ -12,6 +12,8 @@ import {
   createContentfulClient
 } from '../../utils/contentful'
 
+// import data from './hardcoded'
+
 
 class Provider extends React.Component<any, StateType> {
 
@@ -20,7 +22,7 @@ class Provider extends React.Component<any, StateType> {
   initializeCallBacks: Function[] = []
 
   componentDidMount = () => {
-    this.loadContentful()
+    setTimeout(() => this.loadContentful(), 100)
   }
 
   loadContentful = async () => {
@@ -28,6 +30,7 @@ class Provider extends React.Component<any, StateType> {
 
     this.setState({ ready: false })
     this.setState({
+      // contentfulData: data
       contentfulData: await parseContentfulItems((await client.getEntries({ limit: 200 })).items)
     })
     this.setState({ ready: true })
