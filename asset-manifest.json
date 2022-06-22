@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/video-filming-constructor/static/css/main.c2f42696.css",
-    "main.js": "/video-filming-constructor/static/js/main.0268c497.js",
+    "main.css": "/video-filming-constructor/static/css/main.38923ef3.css",
+    "main.js": "/video-filming-constructor/static/js/main.2a82dceb.js",
     "static/media/TTFirsNeue-Bold.ttf": "/video-filming-constructor/static/media/TTFirsNeue-Bold.0e5c24bc12f0df7821a9.ttf",
     "static/media/TTFirsNeue-Regular.ttf": "/video-filming-constructor/static/media/TTFirsNeue-Regular.7925664aab1bc42bbc9b.ttf",
     "index.html": "/video-filming-constructor/index.html",
     "static/media/close.svg": "/video-filming-constructor/static/media/close.123fadf556b4d6032f17.svg",
-    "main.c2f42696.css.map": "/video-filming-constructor/static/css/main.c2f42696.css.map",
-    "main.0268c497.js.map": "/video-filming-constructor/static/js/main.0268c497.js.map"
+    "main.38923ef3.css.map": "/video-filming-constructor/static/css/main.38923ef3.css.map",
+    "main.2a82dceb.js.map": "/video-filming-constructor/static/js/main.2a82dceb.js.map"
   },
   "entrypoints": [
-    "static/css/main.c2f42696.css",
-    "static/js/main.0268c497.js"
+    "static/css/main.38923ef3.css",
+    "static/js/main.2a82dceb.js"
   ]
 }
