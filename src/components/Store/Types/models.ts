@@ -2,6 +2,7 @@ import { ContentfulItem, File } from './contentfulTypes'
 
 
 export interface Site extends ContentfulItem {
+  type: 'site'
   title: string
   desc: string
   priceTitle: string
@@ -9,7 +10,14 @@ export interface Site extends ContentfulItem {
   img?: File
 }
 
+export interface Finish extends ContentfulItem {
+  type: 'finish'
+  title: string
+  button: string
+}
 export interface Question extends ContentfulItem {
+  type: 'question'
+  titleId: string
   title: string
   checkboxes: boolean
   desc: string
@@ -18,10 +26,13 @@ export interface Question extends ContentfulItem {
 }
 
 export interface Responce extends ContentfulItem {
+  type: 'responce'
+  titleId: string
   title: string
   desc: string
   price: number
-  questions?: Question[]
+  questions?: (Question | Finish)[]
+  info: string
 }
 
 export interface Answer {

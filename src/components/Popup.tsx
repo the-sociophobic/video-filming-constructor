@@ -7,7 +7,7 @@ export type PopupProps = {
   children: any
   opened: boolean
   close: () => void
-  type: 'question' | 'submit'
+  type: 'question' | 'finish'
 }
 
 
@@ -37,7 +37,7 @@ const Popup: React.FC<PopupProps> = ({
     <Div100vh className='Popup__background'>
       <div className='container h-100'>
         <div className='row h-100'>
-          <div className='col h-100 d-flex flex-column justify-content-center'>
+          <div className={`col ${type === 'finish' && 'col-md-8 col-xl-4 mx-auto'} h-100 d-flex flex-column justify-content-center`}>
             <div className='Popup__close d-flex flex-row justify-content-end'>
               Закрыть
             </div>

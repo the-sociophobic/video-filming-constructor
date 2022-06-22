@@ -7,32 +7,31 @@ import ProgressBar from './ProgressBar'
 import Selector from './Selector'
 import Button from './Button'
 import { Context } from './Store'
-import { Question, Site, Responce, Answer } from './Store/Types/models'
-
+import { Question, Site, Responce, Answer, Finish } from './Store/Types/models'
+import submit from '../utils/submit'
 
 
 const Page: React.FC<{}> = () => {
   const context = React.useContext(Context)
   const page: Site = context?.contentful?.sites?.[0]
-  const [currentQuestion, setCurrentQuestion] = React.useState<Question | undefined>(page?.firstQuestion)
+  const [currentQuestion, setCurrentQuestion] = React.useState<Question | Finish | undefined>(page?.firstQuestion)
   const [answers, setAnswers] = React.useState<Answer[]>([])
   const [currentAnswer, setCurrentAnswer] = React.useState<string[]>([])
   const [opened, setOpened] = React.useState(false)
-  const [type, setType] = React.useState<'question' | 'submit'>('question')
+  const [contactInfo, setContactInfo] = React.useState('')
 
-  const open = () => {
-    setCurrentQuestion(page.firstQuestion)
-    setAnswers([])
-    setCurrentAnswer([])
-    setType('question')
-    setOpened(true)
+  const open = async () => {
+    submit().then(res => console.log(res))
+    // setCurrentQuestion(page.firstQuestion)
+    // setAnswers([])
+    // setCurrentAnswer([])
+    // setOpened(true)
   }
   const close = () => {
     setOpened(false)
     setCurrentQuestion(page.firstQuestion)
     setAnswers([])
     setCurrentAnswer([])
-    setType('question')
   }
   const prev = () => {
     setCurrentAnswer(answers[answers.length - 1].answers)
@@ -40,7 +39,7 @@ const Page: React.FC<{}> = () => {
     setAnswers(answers.slice(0, -1))
   }
   const next = () => {
-    if (!currentQuestion)
+    if (!currentQuestion || currentQuestion.type === 'finish')
       return
     setAnswers([
       ...answers,
@@ -51,17 +50,18 @@ const Page: React.FC<{}> = () => {
       }
     ])
     setCurrentAnswer([])
-    let nextQuestion: null | Question = null
+    let nextQuestion: Question | Finish | undefined
     currentAnswer.forEach(answerTitle => {
       let responce: undefined | Responce = currentQuestion?.responces
         ?.find(resp => resp.title === answerTitle)
       if (responce?.questions?.[0])
         nextQuestion = responce.questions[0]
     })
-    if (nextQuestion)
-      setCurrentQuestion(nextQuestion)
-    else
-      setType('submit')
+    setCurrentQuestion(nextQuestion)
+  }
+  const submitThenClose = async () => {
+    await submit(answers, contactInfo)
+    close()
   }
 
   return !page ? <div /> :
@@ -93,9 +93,9 @@ const Page: React.FC<{}> = () => {
       <Popup
         opened={opened && !!currentQuestion}
         close={close}
-        type={type}
+        type={currentQuestion?.type || 'question'}
       >
-        {type === 'question' && currentQuestion ?
+        {currentQuestion?.type === 'question' &&
           <>
             <ProgressBar passedQuestions={[
               ...answers.map(answer => answer.question),
@@ -139,8 +139,20 @@ const Page: React.FC<{}> = () => {
               </div>
             </div>
           </>
-          :
+        }
+        {currentQuestion?.type === 'finish' &&
           <>
+            <p className='p my-3'>
+              {currentQuestion.title}
+            </p>
+            <input
+              className='mt-3'
+              value={contactInfo}
+              onChange={e => setContactInfo(e.target.value)}
+            />
+            <Button _onClick={() => submitThenClose()}>
+              {currentQuestion.button}
+            </Button>
           </>
         }
       </Popup>
