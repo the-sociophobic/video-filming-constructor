@@ -38,7 +38,7 @@ const Popup: React.FC<PopupProps> = ({
     :
     <Div100vh className='Popup__background'>
       <div className='Popup__price'>
-        <div className='container d-flex flex-row justify-content-end'>
+        <div className='container d-flex flex-row justify-content-end align-items-center'>
           <div className='p p--m me-5'>
             Текущая<br />стоимость:
           </div>
