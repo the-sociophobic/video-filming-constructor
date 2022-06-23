@@ -8,6 +8,8 @@ import Selector from './Selector'
 import Button from './Button'
 import { Context } from './Store'
 import { Question, Site, Responce, Answer, Finish } from './Store/Types/models'
+import calculatePrice from '../utils/calculatePrice'
+import emailOrPhone from '../utils/emailOrPhone'
 import submit from '../utils/submit'
 
 
@@ -21,11 +23,11 @@ const Page: React.FC<{}> = () => {
   const [contactInfo, setContactInfo] = React.useState('')
 
   const open = async () => {
-    submit().then(res => console.log(res))
-    // setCurrentQuestion(page.firstQuestion)
-    // setAnswers([])
-    // setCurrentAnswer([])
-    // setOpened(true)
+    // submit().then(res => console.log(res))
+    setCurrentQuestion(page.firstQuestion)
+    setAnswers([])
+    setCurrentAnswer([])
+    setOpened(true)
   }
   const close = () => {
     setOpened(false)
@@ -60,6 +62,7 @@ const Page: React.FC<{}> = () => {
     setCurrentQuestion(nextQuestion)
   }
   const submitThenClose = async () => {
+    console.log(contactInfo)
     await submit(answers, contactInfo)
     close()
   }
@@ -94,6 +97,18 @@ const Page: React.FC<{}> = () => {
         opened={opened && !!currentQuestion}
         close={close}
         type={currentQuestion?.type || 'question'}
+        price={calculatePrice(currentQuestion?.type === 'question' ?
+          [
+            ...answers,
+            {
+              question: currentQuestion,
+              title: currentQuestion?.title || '',
+              answers: currentAnswer
+            }
+          ]
+          :
+          answers
+        )}
       >
         {currentQuestion?.type === 'question' &&
           <>
@@ -146,11 +161,15 @@ const Page: React.FC<{}> = () => {
               {currentQuestion.title}
             </p>
             <input
-              className='mt-3'
+              className='mb-3'
               value={contactInfo}
               onChange={e => setContactInfo(e.target.value)}
             />
-            <Button _onClick={() => submitThenClose()}>
+            <Button
+              className={emailOrPhone(contactInfo)? 'Button--primary' : 'Button--gray'}
+              _onClick={() => submitThenClose()}
+              disabled={!emailOrPhone(contactInfo)}
+            >
               {currentQuestion.button}
             </Button>
           </>

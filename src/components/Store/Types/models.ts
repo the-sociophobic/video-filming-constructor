@@ -20,6 +20,7 @@ export interface Question extends ContentfulItem {
   titleId: string
   title: string
   checkboxes: boolean
+  noSum: boolean
   desc: string
   responces?: Responce[]
   img?: File

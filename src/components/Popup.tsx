@@ -8,6 +8,7 @@ export type PopupProps = {
   opened: boolean
   close: () => void
   type: 'question' | 'finish'
+  price: number
 }
 
 
@@ -15,7 +16,8 @@ const Popup: React.FC<PopupProps> = ({
   children,
   opened = false,
   close,
-  type = 'question'
+  type = 'question',
+  price
 }) => {
 
   const popupRef = React.useRef<HTMLHeadingElement>(null)
@@ -35,6 +37,16 @@ const Popup: React.FC<PopupProps> = ({
     <div />
     :
     <Div100vh className='Popup__background'>
+      <div className='Popup__price'>
+        <div className='container d-flex flex-row justify-content-end'>
+          <div className='p p--m me-5'>
+            Текущая<br />стоимость:
+          </div>
+          <h1 className='h1'>
+            {price} р
+          </h1>
+        </div>
+      </div>
       <div className='container h-100'>
         <div className='row h-100'>
           <div className={`col ${type === 'finish' && 'col-md-8 col-xl-4 mx-auto'} h-100 d-flex flex-column justify-content-center`}>
