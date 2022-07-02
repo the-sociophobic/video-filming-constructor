@@ -23,7 +23,9 @@ const Page: React.FC<{}> = () => {
   const [contactInfo, setContactInfo] = React.useState('')
 
   const open = async () => {
-    // submit().then(res => console.log(res))
+    // submit()
+    //   .then(res => console.log(res))
+    //   .catch(err => console.log(err))
     setCurrentQuestion(page.firstQuestion)
     setAnswers([])
     setCurrentAnswer([])
