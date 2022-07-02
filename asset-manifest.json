@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/video-filming-constructor/static/css/main.fc8c5bbb.css",
-    "main.js": "/video-filming-constructor/static/js/main.47b9a440.js",
+    "main.js": "/video-filming-constructor/static/js/main.c4567334.js",
     "static/media/TTFirsNeue-Bold.ttf": "/video-filming-constructor/static/media/TTFirsNeue-Bold.0e5c24bc12f0df7821a9.ttf",
     "static/media/TTFirsNeue-Regular.ttf": "/video-filming-constructor/static/media/TTFirsNeue-Regular.7925664aab1bc42bbc9b.ttf",
     "index.html": "/video-filming-constructor/index.html",
     "static/media/close.svg": "/video-filming-constructor/static/media/close.123fadf556b4d6032f17.svg",
     "main.fc8c5bbb.css.map": "/video-filming-constructor/static/css/main.fc8c5bbb.css.map",
-    "main.47b9a440.js.map": "/video-filming-constructor/static/js/main.47b9a440.js.map"
+    "main.c4567334.js.map": "/video-filming-constructor/static/js/main.c4567334.js.map"
   },
   "entrypoints": [
     "static/css/main.fc8c5bbb.css",
-    "static/js/main.47b9a440.js"
+    "static/js/main.c4567334.js"
   ]
 }
