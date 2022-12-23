@@ -31,6 +31,7 @@ export interface Responce extends ContentfulItem {
   titleId: string
   title: string
   desc: string
+  currencyType: boolean
   price: number
   questions?: (Question | Finish)[]
   info: string
